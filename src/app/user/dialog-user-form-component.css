@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  /* display: inline;
+  flex-direction: row; */
+}
+
+.close {
+  float: left;
+  position: fixed;
+  margin-top: -10px;
+}
+
+.footer {
+  float: right;
+}
+
+/* #titulo {
+  width: 50px;
+} */
+
+/* #title,#close{
+  width: 1px;
+} */
