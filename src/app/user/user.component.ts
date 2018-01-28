@@ -4,9 +4,6 @@ import { UserService } from './user.service';
 import { User } from './user';
 import { MatTableDataSource } from '@angular/material';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { UserNewComponent } from './user-new/user-new.component';
-
-// import { MatCardModule } from '@angular/material';
 
 @Component({
   selector: 'app-user',
@@ -51,10 +48,16 @@ export class UserComponent implements OnInit {
     this.openDialog();
   }
 
+  editUser(us: User) {
+    this.action = 'MODIFICAR';
+    this.user = us;
+    this.openDialog()
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(DialogUserFormComponent, {
       width: '400px',
-      disableClose: false,
+      disableClose: true,
       closeOnNavigation: false,
       data: { user: this.user, users: this.users, dataSource: this.dataSource, action: this.action }
     });
@@ -88,6 +91,8 @@ export class UserComponent implements OnInit {
 })
 export class DialogUserFormComponent {
 
+  hintlabel = 'El campo no puede estar vacio';
+
   constructor(
     public dialogRef: MatDialogRef<DialogUserFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -96,8 +101,15 @@ export class DialogUserFormComponent {
   }
 
   execute() {
-    this.data.users.push(this.data.user);
-    this.data.dataSource = new MatTableDataSource<User>(this.data.users);
-    this.dialogRef.close(this.data.dataSource);
+    const tempUser = this.data.user;
+    if (tempUser.first_name !== '' && tempUser.last_name !== '' && tempUser.email !== '') {
+      this.data.users.push(this.data.user);
+      this.data.dataSource = new MatTableDataSource<User>(this.data.users);
+      this.dialogRef.close(this.data.dataSource);
+    }
+  }
+
+  cancel() {
+    this.dialogRef.close(null);
   }
 }

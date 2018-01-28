@@ -30,7 +30,7 @@
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <button mat-button type="button" color="primary">
+            <button mat-button type="button" color="primary" (click)="editUser(element)">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </button>
             <button mat-button type="button" color="warn">

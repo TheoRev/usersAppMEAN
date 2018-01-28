@@ -5,7 +5,8 @@ import {
   MatTableModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatGridListModule
 } from '@angular/material';
 
 const modules = [
@@ -14,7 +15,8 @@ const modules = [
   MatTableModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatGridListModule
 ];
 
 @NgModule({
