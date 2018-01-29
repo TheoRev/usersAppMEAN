@@ -35,9 +35,23 @@ export class UserFormDialogComponent implements OnInit {
   }
 
   createUser(us: User) {
-    this.data.users.push(this.data.user);
+    console.log(us);
+    const service = this.data.service;
+    service.create(us)
+      .then(status => this.getUsers())
+      .catch(err => {
+        console.log(err);
+      });
+    // this.dialogRef.close();
+    // this.data.users.push(this.data.user);
+    console.log(this.data.users);
     this.data.dataSource = new MatTableDataSource<User>(this.data.users);
     this.dialogRef.close(this.data.dataSource);
+  }
+
+  getUsers() {
+    this.data.service.getUsers()
+      .then(users => this.data.users = users);
   }
 
   updateUser(us: User) {

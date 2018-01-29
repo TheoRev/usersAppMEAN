@@ -21,11 +21,12 @@ export class UserComponent implements OnInit {
 
   user = new User();
 
-  public users: User[] = [
-    new User(1, 'Theo', 'Revilla Fdz', 'theo@gmail.com'),
-    new User(2, 'Almendra', 'Cárdenas', 'almendra@gmail.com'),
-    new User(3, 'José', 'Rodriguez Fdz', 'pepe@gmail.com'),
-  ];
+  // public users: User[] = [
+  //   new User(1, 'Theo', 'Revilla Fdz', 'theo@gmail.com'),
+  //   new User(2, 'Almendra', 'Cárdenas', 'almendra@gmail.com'),
+  //   new User(3, 'José', 'Rodriguez Fdz', 'pepe@gmail.com'),
+  // ];
+  public users: User[] = [];
 
   displayedColumns = ['id', 'name', 'ape', 'email', 'action'];
   dataSource = new MatTableDataSource<User>(this.users);
@@ -33,8 +34,7 @@ export class UserComponent implements OnInit {
   constructor(private _userService: UserService, public dialog: MatDialog, public confirmDialog: MatDialog) { }
 
   ngOnInit() {
-    // this.getUsers();
-    this.loading = false;
+    this.getUsers();
     console.log(this.users);
   }
 
@@ -78,13 +78,19 @@ export class UserComponent implements OnInit {
       width: '400px',
       disableClose: true,
       closeOnNavigation: false,
-      data: { user: this.user, users: this.users, dataSource: this.dataSource, action: this.action }
+      data: {
+        user: this.user, users: this.users, dataSource: this.dataSource, action: this.action, service: this._userService
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // if (result === 200) {
+      //   this.getUsers();
+      //   this.dataSource = new MatTableDataSource<User>(this.users);
+      // } else {
+      //   console.log(result);
+      // }
       this.dataSource = (result != null) ? result : this.dataSource;
-      // this.dialogResult = result;
     });
   }
 

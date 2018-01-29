@@ -10,7 +10,7 @@ const apiRouter = require('./routes/api_v1')
 const app = express()
 
 // MongoDB 
-mongoose.connect('mongodb://localhost/meandb');
+mongoose.connect('mongodb://localhost:27017/meandb');
 
 // API Routes
 app.use('/', apiRouter)
