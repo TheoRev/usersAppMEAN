@@ -1,9 +1,19 @@
 const express = require('express');
 const path = require('path');
-const app = express()
 
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
+
+const apiRouter = require('./routes/api_v1')
+
+const app = express()
+
+// MongoDB 
+mongoose.connect('mongodb://localhost/meandb');
+
+// API Routes
+app.use('/', apiRouter)
 
 // Midleware
 app.use(morgan('dev'));
