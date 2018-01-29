@@ -1,0 +1,20 @@
+<div>
+  <h3>
+    ¿Esta seguro que quiere eliminar el usuario: {{ data.user.first_name }}?
+  </h3>
+  <hr>
+  <mat-grid-list cols="4" rowHeight="2:0.5">
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+      <a mat-button color="warn" (click)="cancel()">
+        <i class="fa fa-times" aria-hidden="true"></i>&nbsp; NO
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a mat-button color="accent" (click)="deleteUser()">
+        <i class="fa fa-check" aria-hidden="true"></i>&nbsp; SI
+      </a>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

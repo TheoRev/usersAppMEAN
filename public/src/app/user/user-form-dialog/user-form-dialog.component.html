@@ -1,0 +1,42 @@
+<div>
+  <!-- <form> -->
+  <div class="header">
+    <div id="titulo">
+      <h3>{{ data.action }} USUARIO</h3>
+    </div>
+  </div>
+  <div class="container">
+    <mat-form-field>
+      <input matInput #txtId placeholder="ID" disabled [(ngModel)]="data.user._id">
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <input matInput #txtNombre placeholder="Nombres" [(ngModel)]="data.user.first_name" required>
+      <mat-hint align="end">{{(txtNombre.value == '')? hintlabel:''}}</mat-hint>
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <input matInput #txtApellido placeholder="Apellidos" [(ngModel)]="data.user.last_name" required>
+      <mat-hint align="end">{{(txtApellido.value =='') ? hintlabel:''}}</mat-hint>
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <input matInput #txtEmail placeholder="Email" [(ngModel)]="data.user.email" required>
+      <mat-hint align="end">{{(txtEmail.value =='')? hintlabel:''}}</mat-hint>
+    </mat-form-field>
+  </div>
+  <!-- <hr> -->
+  <div>
+    <mat-grid-list cols="2" rowHeight="2:0.5">
+      <mat-grid-tile>
+        <a mat-button color="warn" (click)="cancel()">
+          <i class="fa fa-times" aria-hidden="true"></i>&nbsp; CANCELAR
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button type="button" color="accent" (click)="execute()">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;
+          <span>GUARDAR</span>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <!-- </form> -->
+</div>
